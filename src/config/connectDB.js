@@ -1,5 +1,8 @@
 const { Sequelize } = require('sequelize');
 import winston from 'winston';
+var env = process.env.NODE_ENV || 'development';
+var config = require(__dirname + './src/config/config.js')[env];
+console.log('<<<<<<< config >>>>>>>', config);
 const logger = new winston.Logger({
     level: 'info',
     transports: [
