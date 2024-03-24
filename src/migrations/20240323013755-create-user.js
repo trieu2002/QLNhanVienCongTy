@@ -22,13 +22,14 @@ module.exports = {
         type: Sequelize.STRING
       },
       gender: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       phonenumber: {
         type: Sequelize.STRING
       },
-      gropupId: {
-        type: Sequelize.INTEGER
+      groupId: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1
       },
       createdAt: {
         allowNull: false,
