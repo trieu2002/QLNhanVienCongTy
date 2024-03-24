@@ -27,8 +27,9 @@ module.exports = {
       phonenumber: {
         type: Sequelize.STRING
       },
-      gropupId: {
-        type: Sequelize.INTEGER
+      groupId: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1
       },
       createdAt: {
         allowNull: false,

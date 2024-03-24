@@ -2,9 +2,14 @@ import express from 'express';
 import { ValidationMiddleware } from '../middleware/validation';
 import { LoginSchema, RegisterSchema } from '../validation/auth/auth';
 import { AuthController } from '../controller/auth/auth.controller';
+import { checkAuthGuard, checkAuthGuardPermission } from '../middleware/jwt-guard';
 const router = express.Router();
 const version = ['v1', 'v2'];
 const initRoutes = (app) => {
+    /**
+     * Config middle chung
+     */
+    router.all("*", checkAuthGuard, checkAuthGuardPermission);
     /**
      * Module Auth
      */
