@@ -15,7 +15,7 @@ export const errorHandler = (err, req, res, next) => {
 
         case 404:
             errCode = err?.errCode,
-                errors = err?.errors
+            errors = err?.errors
             break;
         case 409:
             errCode = err?.errCode,

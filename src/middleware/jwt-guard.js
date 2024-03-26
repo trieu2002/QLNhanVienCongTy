@@ -19,10 +19,9 @@ export const checkAuthGuard = (req, res, next) => {
         let token = cookies && cookies.access_token ? cookies?.access_token : tokenFromHeader;
         // giải mã token
         let decode = AuthService.verifyToken(token);
-        console.log('<<<<<<< decode >>>>>>>', decode);
         if (decode) {
             req.user = decode;
-            next();
+            return next();
         }
         throw new AnauthorizedException(statusCode['UNAUTHORIZED'], 'Unauthorized', 'Bạn chưa đăng nhập.Vui lòng đăng nhập!')
 
@@ -36,7 +35,9 @@ export const checkAuthGuardPermission = (req, res, next) => {
     if (req.user) {
         let email = req.user?.email;
         let roles = req.user?.roles.Roles;
-        let currentPath = req.path;
+        console.log('<<<<<<< roles >>>>>>>', roles);
+        let currentPath = req.path.replace(/\/\d+$/, '');
+        console.log('<<<<<<< currentPath >>>>>>>', currentPath);
         if (!roles || roles.length === 0) {
             throw new ForbiddenException(statusCode['FORBIDDEN'], 'Forbidden', 'Bạn không có quyền truy cập!');
         }
