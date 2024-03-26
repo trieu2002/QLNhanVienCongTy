@@ -161,6 +161,13 @@ const UserService = {
         return successResponse(res, statusCode['OK'], 'Remove user success', user);
 
     },
+    async findById(id) {
+        const found = await db.User.findOne({
+            where: { id: id },
+            raw: true
+        });
+        return found;
+    }
 
 };
 export default UserService;
