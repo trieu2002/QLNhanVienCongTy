@@ -7,6 +7,7 @@ import BadRequestException from '../../exception/BadRequest';
 import { SALT } from '../../const/const';
 import successResponse from '../../helper/successResponse';
 const jwt = require('jsonwebtoken');
+const i18n = require('i18n')
 import dotenv from 'dotenv';
 dotenv.config();
 export const AuthService = {
@@ -45,13 +46,13 @@ export const AuthService = {
                 }
                 let token = this.createTokenWithJWT(payload);
                 res.cookie('access_token', token, { httpOnly: true, maxAge: 60 * 60 * 60 * 1000 });
-                return successResponse(res, StatusCode.OK, 'Login Success', {
+                return successResponse(res, StatusCode.OK, i18n.__('AUTH_LOGIN'), {
                     access_token: token,
                     roles
                 });
             }
         }
-        throw new BadRequestException(StatusCode['BAD_REQUEST'], 'BadRequest', 'Email/Phonenumber or Mật khẩu không chính xác.Vui lòng thử lại!');
+        throw new BadRequestException(StatusCode['BAD_REQUEST'], 'BadRequest', i18n.__('LOGIN_FAILED'))
     },
     async register(rawData, res) {
         const { email, password, username, gender, address, phonenumber } = rawData;
