@@ -1,0 +1,7 @@
+{
+    "INVALID_EMAIL": "Email invalid",
+    "INVALID_PASSWORD": "Password invalid",
+    "EMAIKL_EXISTED": "Email already exitst.Please choose another account!",
+    "PHONE_EXISTED": "Phonenumber already exist.Please choose another account",
+    "AUTH_LOGIN": "Login success"
+}
